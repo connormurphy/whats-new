@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's new — Superhuman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f5f2;
+  --text: #292827;
+  --text-sub: rgba(20,20,19,0.65);
+  --text-sub2: rgba(20,20,19,0.4);
+  --border: rgba(115,113,109,0.2);
+  --purple: #714cb6;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html { background: var(--bg); }
+body { font-family: var(--font); color: var(--text); background: var(--bg); min-height: 100vh; }
+
+/* ─── NAV ─── */
+.nav {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 36px;
+  position: relative;
+}
+
+.nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 36px;
+  right: 36px;
+  height: 1px;
+  background: var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nav-link svg { opacity: 0.5; }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 32px;
+}
+
+.nav-login {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+}
+
+.btn-signup {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%), #714cb6;
+  box-shadow: 0px 1px 2px rgba(81,55,128,0.48), 0px 0px 0px 1px #513780;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.btn-signup:hover { opacity: 0.88; }
+
+/* ─── PAGE ─── */
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 36px 100px;
+}
+
+/* ─── HEADING ─── */
+.page-heading { margin-top: 120px; }
+.page-heading h1 {
+  font-size: 39px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 47px;
+  color: var(--text);
+}
+
+/* ─── FILTER TABS ─── */
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 24px;
+  margin-left: -12px;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: color 0.12s;
+}
+.filter-tab:hover { color: var(--text); }
+.filter-tab.active { color: var(--text); }
+.filter-tab svg { opacity: 0.5; transition: transform 0.2s ease; }
+.filter-tab--dropdown.open svg { transform: rotate(180deg); }
+
+/* ─── FILTER DROPDOWN ─── */
+.filter-dropdown { position: relative; }
+
+.filter-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(51,51,51,0.04),
+    0 1px 1px 0.5px rgba(51,51,51,0.04),
+    0 3px 3px -1.5px rgba(51,51,51,0.02),
+    0 6px 6px -3px rgba(51,51,51,0.04),
+    0 12px 12px -6px rgba(51,51,51,0.04),
+    0 24px 24px -12px rgba(51,51,51,0.04),
+    0 0 0 1px white;
+  padding: 16px 40px 16px 20px;
+  min-width: 280px;
+  z-index: 50;
+  gap: 0;
+}
+.filter-dropdown-menu.open { display: flex; flex-direction: column; }
+
+.filter-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-align: left;
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* checkbox */
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border-radius: 3.5px;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.12s, border-color 0.12s;
+}
+.filter-dropdown-item.checked .filter-checkbox {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+.filter-checkbox-check {
+  display: none;
+  width: 10px;
+  height: 8px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.filter-dropdown-item.checked .filter-checkbox-check { display: block; }
+
+/* ─── FILTER TAGS ─── */
+.filter-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  min-height: 32px;
+  visibility: hidden;
+}
+.filter-tags.visible { visibility: visible; }
+
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.filter-tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 1;
+  margin-left: 2px;
+}
+.filter-tag-remove:hover { color: var(--text); }
+
+.filter-clear-all {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-sub);
+  cursor: pointer;
+  padding: 0 4px;
+  letter-spacing: -0.01em;
+}
+.filter-clear-all:hover { color: var(--text); }
+
+/* ─── FEATURED CARD ─── */
+.featured-section { margin-top: 32px; }
+
+.featured-card {
+  display: grid;
+  grid-template-columns: 901px 435px;
+  gap: 32px;
+  cursor: pointer;
+}
+
+.featured-img-wrap {
+  width: 901px;
+  height: 507px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.featured-img-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s ease;
+}
+.featured-card:hover .featured-img-inner { transform: scale(1.03); }
+
+.featured-img-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ─── FEATURED CONTENT ─── */
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 0;
+}
+
+.card-byline {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-sub);
+}
+
+.featured-title {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.expand-arrow {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  flex-shrink: 0;
+  background: url('expand-hover.svg') center / contain no-repeat;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.featured-card:hover .expand-arrow { opacity: 0.6; }
+
+.featured-desc {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-sub);
+  margin-top: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* ─── GRID ─── */
+.grid-section { margin-top: 64px; }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 668px 668px;
+  gap: 64px 32px;
+}
+
+/* ─── 3-UP GRID ─── */
+.grid-section-3up { margin-top: 120px; }
+
+.cards-grid-3up {
+  display: grid;
+  grid-template-columns: 435px 435px 435px;
+  gap: 64px 32px;
+}
+
+.grid-card-small {
+  cursor: pointer;
+  width: 435px;
+}
+
+.card-img-wrap-small {
+  width: 435px;
+  height: 245px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-wrap-small .card-img-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.grid-card-small:hover .card-img-inner { transform: scale(1.03); }
+
+.card-img-wrap-small img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ─── SHOW MORE ─── */
+.show-more-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 32px;
+  padding: 24px 0;
+}
+.show-more-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.show-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px 4px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-sub);
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+.show-more-btn:hover { border-color: rgba(115,113,109,0.4); color: var(--text); }
+.show-more-btn svg { opacity: 0.6; }
+
+#contentArea {
+  transition: opacity 0.2s ease;
+}
+
+/* ─── GRID CARD ─── */
+.grid-card {
+  cursor: pointer;
+  width: 668px;
+}
+
+.card-img-wrap {
+  width: 668px;
+  height: 376px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.grid-card:hover .card-img-inner { transform: scale(1.03); }
+
+.card-img-inner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+
+
+.card-meta { margin-top: 16px; }
+.grid-card .card-meta, .grid-card-small .card-meta { margin-top: 32px; }
+.grid-card .card-desc { max-width: 75%; }
+.card-date { font-size: 12.5px; color: var(--text-sub); }
+/* expand icon — hidden, replaced by title icon */
+.card-expand-icon { display: none; }
+
+.card-title {
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text);
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.card-title::after {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  background: url('expand-hover.svg') center / contain no-repeat;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.grid-card:hover .card-title::after,
+.grid-card-small:hover .card-title::after { opacity: 0.6; }
+.card-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-sub);
+  margin-top: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* ─── BACKDROP ─── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,20,19,0.40);
+  backdrop-filter: blur(1.5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+.backdrop.open { opacity: 1; pointer-events: all; }
+
+/* ─── DRAWER ─── */
+.drawer {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 551px;
+  height: calc(100vh - 60px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(20,20,19,0.16), 0 0 0 1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  transform: translateX(calc(100% + 30px));
+  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+}
+.drawer.open { transform: translateX(0); }
+
+.drawer-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawer-label {
+  font-size: 12.5px;
+  color: var(--text-sub2);
+}
+
+.drawer-close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-sub);
+  transition: color 0.12s;
+  padding: 0;
+}
+.drawer-close:hover { color: var(--text); }
+.drawer-close svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+.drawer-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(115,113,109,0.2) transparent;
+}
+.drawer-scroll::-webkit-scrollbar { width: 4px; }
+.drawer-scroll::-webkit-scrollbar-thumb { background: rgba(115,113,109,0.2); border-radius: 2px; }
+
+.drawer-body { padding: 28px 24px 0; }
+
+.drawer-date { font-size: 13px; color: var(--text-sub); margin-bottom: 8px; }
+.drawer-title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.drawer-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-sub);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.drawer-hero {
+  width: 100%;
+  height: 283px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.drawer-hero img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.drawer-features-heading {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.drawer-feature-list { display: flex; flex-direction: column; padding-bottom: 32px; }
+
+.drawer-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.drawer-feature-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.drawer-feature-icon img { width: 20px; height: 20px; }
+.drawer-feature-icon svg { width: 20px; height: 20px; stroke: var(--text-sub); fill: none; stroke-width: 1.5; }
+
+.drawer-feature-text { display: flex; flex-direction: column; }
+.drawer-feature-text h4 { font-size: 16px; font-weight: 400; color: var(--text); letter-spacing: -0.01em; line-height: 1.5; }
+.drawer-feature-text p { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--text-sub); letter-spacing: -0.01em; }
+
+.drawer-fade {
+  position: sticky;
+  bottom: 0;
+  height: 52px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+  pointer-events: none;
+  margin-top: -52px;
+  transition: opacity 0.2s;
+}
+
+.drawer-footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  padding: 14px 20px 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-learn-more {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-family: var(--font);
+  font-size: 13.5px;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-learn-more:hover { border-color: rgba(115,113,109,0.4); background: rgba(41,40,39,0.03); }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<header>
+  <div class="nav">
+    <a class="nav-logo" href="#">
+      <svg height="24" viewBox="0 0 167.892 24.01" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M108.11 10.5818V6.00415H110.871V18.0058H108.11V13.0841H103.222V18.0058H100.461V6.00417H103.222V10.5818L108.11 10.5818Z" fill="#141413"/>
+        <path d="M35.6451 14.2859H38.4065C38.5959 15.4009 39.4344 15.9497 40.9436 15.9497C42.3329 15.9497 43.1038 15.4184 43.1038 14.5103C43.1038 13.8068 42.7446 13.4824 41.7319 13.258L39.9309 12.8639C36.9996 12.2128 35.8672 11.2174 35.8672 9.26182C35.8672 7.11892 37.7705 5.72949 40.6843 5.72949C43.5982 5.72949 45.519 7.06662 45.6387 9.46656H42.8948C42.7054 8.541 41.9518 8.05978 40.6822 8.05978C39.4126 8.05978 38.6242 8.52352 38.6242 9.32941C38.6242 9.94562 38.9661 10.22 40.1683 10.5119L41.8647 10.8886C44.8483 11.5223 45.8609 12.4654 45.8609 14.5929C45.8609 16.8731 43.9924 18.2799 40.9392 18.2799C37.7335 18.2799 35.7604 16.8056 35.6406 14.2837L35.6451 14.2859Z" fill="#141413"/>
+        <path d="M56.2389 6.00439H59.0003V12.9144C59.0003 16.5492 57.2863 18.2805 53.754 18.2805C50.2217 18.2805 48.5078 16.5492 48.5078 12.9144V6.00439H51.2692V12.982C51.2692 14.9376 52.0227 15.7934 53.7562 15.7934C55.4897 15.7934 56.2432 14.9355 56.2432 12.982V6.00439H56.2389Z" fill="#141413"/>
+        <path d="M83.9515 18.0061H74.8984V6.00439H83.9515V8.47401H77.6576V10.6169H82.9998V13.0865H77.6576V15.5387H83.9515V18.0083V18.0061Z" fill="#141413"/>
+        <path d="M121.895 6.00439H124.656V12.9144C124.656 16.5492 122.942 18.2805 119.41 18.2805C115.878 18.2805 114.164 16.5492 114.164 12.9144V6.00439H116.925V12.982C116.925 14.9376 117.679 15.7934 119.413 15.7934C121.146 15.7934 121.9 14.9355 121.9 12.982V6.00439H121.895Z" fill="#141413"/>
+        <path d="M134.119 11.7494L137.05 6.00439H140.291V18.0061H137.599V10.0682L134.426 16.3619H133.809L130.637 10.0682V18.0061H127.945V6.00439H131.185L134.116 11.7494H134.119Z" fill="#141413"/>
+        <path d="M154.536 18.0056H151.793L151.347 14.9372H146.425L145.979 18.0056H143.234L144.332 10.4095C144.863 6.9796 146.063 5.72949 148.877 5.72949C151.691 5.72949 152.906 6.98177 153.42 10.4095L154.535 18.0056H154.536ZM146.804 12.4349H150.97L150.713 10.6339C150.438 8.81542 149.992 8.21657 148.879 8.21657C147.767 8.21657 147.335 8.81758 147.061 10.6339L146.804 12.4349Z" fill="#141413"/>
+        <path d="M165.199 13.8226V6.00439H167.892V18.0061H165.13L160.176 10.1879V18.0061H157.484V6.00439H160.246L165.199 13.8226Z" fill="#141413"/>
+        <path d="M90.9844 13.1904L93.5579 12.2158L97.5032 17.9952H94.2115L90.9844 13.1904Z" fill="#141413"/>
+        <path d="M87.2969 5.97566H93.0852C93.9329 5.97566 94.6776 6.13323 95.3193 6.44821C95.9608 6.76351 96.4592 7.21597 96.8144 7.80592C97.1695 8.39612 97.3472 9.09216 97.3472 9.89397C97.3472 10.6958 97.1692 11.2991 96.8141 11.8891C96.4589 12.4793 95.8151 12.9722 95.1516 13.2496C94.4339 13.5497 88.7361 15.2714 88.7361 15.2714L88.7406 12.5065C88.7406 12.5065 92.9279 11.4672 93.6098 11.2151C93.9077 11.1049 94.6617 10.8542 94.6617 9.89397C94.6617 8.74639 93.5245 8.63938 92.8069 8.63938H89.2849L90.0583 7.86599V18.0056H87.2969V5.97566Z" fill="#141413"/>
+        <path d="M62.2891 5.97559H68.0773C68.9251 5.97559 69.6697 6.13315 70.3115 6.44813C70.953 6.76343 71.4514 7.21589 71.8066 7.80584C72.1617 8.39604 72.3394 9.09208 72.3394 9.89389C72.3394 10.6957 72.1613 11.299 71.8063 11.889C71.4511 12.4792 70.8073 12.9722 70.1437 13.2496C69.426 13.5496 63.7283 15.2714 63.7283 15.2714L63.7327 12.5064C63.7327 12.5064 67.9201 11.4671 68.6019 11.215C68.8998 11.1049 69.6539 10.8541 69.6539 9.89389C69.6539 8.74631 68.5166 8.6393 67.7991 8.6393H64.2771L65.0505 7.86591V18.0055H62.2891V5.97559Z" fill="#141413"/>
+        <path d="M23.7856 6.40702C23.5221 3.0968 20.8893 0.47037 17.5812 0.21343C13.8616 -0.0739977 10.1266 -0.071832 6.407 0.224276C3.09678 0.485665 0.470368 3.1186 0.213428 6.42883C-0.0739998 10.1485 -0.071834 13.8833 0.224291 17.6029C0.487845 20.9131 3.12079 23.5396 6.42885 23.7965C10.1485 24.084 13.8833 24.0819 17.6029 23.7857C20.9131 23.5221 23.5396 20.8892 23.7965 17.5812C24.0841 13.8616 24.0819 10.1266 23.7856 6.40702ZM12.0343 3.8264C13.3736 3.8264 14.4581 4.90875 14.4581 6.24372C14.4581 7.57868 13.3736 8.66103 12.0343 8.66103C10.695 8.66103 9.61049 7.57868 9.61049 6.24372C9.61049 4.90875 10.695 3.8264 12.0343 3.8264ZM16.6077 19.7524H16.6098L12.4024 17.4484C12.1736 17.3221 11.8949 17.3221 11.6663 17.4484L7.45877 19.7524C6.78147 20.1227 6.0433 19.3714 6.43306 18.7093L11.3766 10.3336C11.6706 9.83487 12.3959 9.83487 12.6898 10.3336L17.6334 18.7093C18.0231 19.3714 17.2872 20.1227 16.6077 19.7524Z" fill="#141413"/>
+      </svg>
+    </a>
+    <nav class="nav-links">
+      <a class="nav-link" href="#">Product <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+      <a class="nav-link" href="#">Enterprise</a>
+      <a class="nav-link" href="#">Pricing</a>
+      <a class="nav-link" href="#">Contact us</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-login" href="#">Log in</a>
+      <div class="nav-divider"></div>
+      <a class="btn-signup" href="#">Sign Up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ── PAGE ── -->
+<div class="page">
+
+  <div class="page-heading">
+    <h1>What's new</h1>
+  </div>
+
+  <div class="filter-tabs">
+    <div class="filter-dropdown">
+      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'productDropdown')">Product <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
+      <div class="filter-dropdown-menu" id="productDropdown">
+        <button class="filter-dropdown-item" data-tag="go"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Go</button>
+        <button class="filter-dropdown-item" data-tag="docs"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Docs</button>
+        <button class="filter-dropdown-item" data-tag="mail"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Mail</button>
+        <button class="filter-dropdown-item" data-tag="agents"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Agents</button>
+        <button class="filter-dropdown-item" data-tag="grammarly"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Grammarly</button>
+      </div>
+    </div>
+    <div class="filter-dropdown">
+      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'teamDropdown')">Team <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
+      <div class="filter-dropdown-menu" id="teamDropdown">
+        <button class="filter-dropdown-item" data-tag="marketing"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Marketing</button>
+        <button class="filter-dropdown-item" data-tag="sales"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Sales</button>
+        <button class="filter-dropdown-item" data-tag="operations"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Operations</button>
+        <button class="filter-dropdown-item" data-tag="epd"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>EPD</button>
+      </div>
+    </div>
+    <div class="filter-dropdown">
+      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'planDropdown')">Plan <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
+      <div class="filter-dropdown-menu" id="planDropdown">
+        <button class="filter-dropdown-item" data-tag="education"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Education</button>
+        <button class="filter-dropdown-item" data-tag="enterprise"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Enterprise</button>
+        <button class="filter-dropdown-item" data-tag="plus"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Plus</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-tags" id="filterTags"></div>
+
+  <!-- Card content area -->
+  <div id="contentArea">
+  <div id="defaultView">
+
+  <!-- Featured card -->
+  <div class="featured-section">
+    <div class="featured-card" onclick="openDrawer(0)">
+      <div class="featured-img-wrap">
+        <div class="featured-img-inner">
+          <img src="img/featured.jpg" alt="Introducing Team Activity Feed">
+        </div>
+      </div>
+      <div class="featured-content">
+        <div class="card-byline">Mar 19, 2026</div>
+        <h2 class="featured-title">
+          <span>Introducing Team Activity Feed</span>
+          <span class="expand-arrow"></span>
+        </h2>
+        <p class="featured-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid-section">
+    <div class="cards-grid">
+
+      <div class="grid-card" onclick="openDrawer(1)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card1.jpg" alt="Meet the new Workspace Search">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Mar 13, 2026</div>
+          <div class="card-title">Meet the new Workspace Search</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card" onclick="openDrawer(2)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card2.jpg" alt="Narrative / marketing-style titles">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Mar 8, 2026</div>
+          <div class="card-title">Narrative / marketing-style titles</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card" onclick="openDrawer(3)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card3.jpg" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Feb 21, 2026</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card" onclick="openDrawer(4)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card4.jpg" alt="Navigation that gets out of your way">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Feb 19, 2026</div>
+          <div class="card-title">Navigation that gets out of your way</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card" onclick="openDrawer(5)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card5.jpg" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Feb 3, 2026</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card" onclick="openDrawer(6)">
+        <div class="card-img-wrap">
+          <div class="card-img-inner">
+            <img src="img/card6.jpg" alt="Navigation that gets out of your way">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Jan 27, 2026</div>
+          <div class="card-title">Navigation that gets out of your way</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3-up grid -->
+  <div class="grid-section-3up">
+    <div class="cards-grid-3up" id="grid3up">
+
+      <div class="grid-card-small" onclick="openDrawer(7)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-1.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Jan 24, 2026</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card-small" onclick="openDrawer(8)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-2.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Jan 21, 2026</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card-small" onclick="openDrawer(9)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-3.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Jan 08, 2026</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card-small" onclick="openDrawer(10)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-4.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Dec 9, 2025</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card-small" onclick="openDrawer(11)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-5.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Dec 2, 2025</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+      <div class="grid-card-small" onclick="openDrawer(12)">
+        <div class="card-img-wrap-small">
+          <div class="card-img-inner">
+            <img src="img/sm-6.png" alt="Share anything instantly with Quick Links">
+            <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Nov 19, 2025</div>
+          <div class="card-title">Share anything instantly with Quick Links</div>
+          <div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Show more -->
+  <div class="show-more-row">
+    <div class="show-more-line"></div>
+    <button class="show-more-btn" id="showMoreBtn" onclick="showMore()">Show more <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="show-more-line"></div>
+  </div>
+
+  </div><!-- /defaultView -->
+
+  <!-- Filtered results -->
+  <div id="filteredView" style="display:none">
+    <div class="featured-section" id="filteredFeatured"></div>
+    <div class="grid-section-3up" style="margin-top:64px">
+      <div class="cards-grid-3up" id="filteredGrid"></div>
+    </div>
+  </div>
+
+  </div><!-- /contentArea -->
+
+</div>
+
+<!-- ── BACKDROP ── -->
+<div class="backdrop" id="backdrop" onclick="closeDrawer()"></div>
+
+<!-- ── DRAWER ── -->
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true">
+  <div class="drawer-header">
+    <span class="drawer-label">Reading assistance</span>
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close">
+      <svg viewBox="0 0 12 12"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg>
+    </button>
+  </div>
+  <div class="drawer-scroll" id="drawerScroll">
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-fade" id="drawerFade"></div>
+  </div>
+  <div class="drawer-footer">
+    <a class="btn-learn-more" href="#">Learn more</a>
+  </div>
+</aside>
+
+<script>
+const cards = [
+  { date: 'Mar 19, 2026', title: 'Introducing Team Activity Feed',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/featured.jpg',
+    tags: ['mail', 'marketing', 'enterprise'],
+    features: [
+      { name: 'In-line AI Chat', desc: 'Ask Go anything about what you\'re reading',
+        icon: '<img src="https://www.figma.com/api/mcp/asset/6dcb9a57-b4d1-4154-b095-ded7753e85c9" width="20" height="20" alt="">' },
+      { name: 'Translate', desc: 'Translate words, sentences, and paragraphs as you\'re reading',
+        icon: '<img src="https://www.figma.com/api/mcp/asset/67cab583-1ee8-4391-9729-53fd10c76adb" width="20" height="20" alt="">' },
+      { name: 'Explain', desc: 'Get clarity and more information with a single click',
+        icon: '<img src="https://www.figma.com/api/mcp/asset/bc7ad84f-0153-4755-a82a-e9bdbae8a750" width="20" height="20" alt="">' }
+    ]
+  },
+  { date: 'Mar 13, 2026', title: 'Meet the new Workspace Search',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card1.jpg',
+    tags: ['mail', 'go', 'sales'],
+    features: [
+      { name: 'Universal search', desc: 'Search across emails, files, and contacts instantly from any view',
+        icon: '<svg viewBox="0 0 18 18"><circle cx="8" cy="8" r="5"/><path d="M12 12l3 3" stroke-linecap="round"/></svg>' },
+      { name: 'Smart filters', desc: 'Filter results by sender, date, label, or attachment in one keystroke',
+        icon: '<svg viewBox="0 0 18 18"><path d="M3 5h12M5 9h8M7 13h4" stroke-linecap="round"/></svg>' }
+    ]
+  },
+  { date: 'Mar 8, 2026', title: 'Narrative / marketing-style titles',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card2.jpg',
+    tags: ['docs', 'marketing', 'plus'],
+    features: [
+      { name: 'Remind me if no reply', desc: 'Automatically resurface emails when you haven\'t heard back by a set date',
+        icon: '<svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="6"/><path d="M9 6v3l2 2" stroke-linecap="round"/></svg>' },
+      { name: 'Send Later', desc: 'Schedule emails to be delivered at the perfect time for your recipient',
+        icon: '<svg viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2"/><path d="M12 2v4M6 2v4M2 9h14" stroke-linecap="round"/></svg>' }
+    ]
+  },
+  { date: 'Feb 21, 2026', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card3.jpg',
+    tags: ['mail', 'operations', 'education'],
+    features: [
+      { name: 'Quick Links', desc: 'Share any file, link, or email thread directly from your compose window',
+        icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' },
+      { name: 'Inline comments', desc: 'Comment on specific parts of an email thread with teammates',
+        icon: '<svg viewBox="0 0 18 18"><path d="M3 3h12a1 1 0 011 1v7a1 1 0 01-1 1H6l-3 3V4a1 1 0 011-1z" stroke-linejoin="round"/></svg>' }
+    ]
+  },
+  { date: 'Feb 19, 2026', title: 'Navigation that gets out of your way',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card4.jpg',
+    tags: ['go', 'mail', 'epd'],
+    features: [
+      { name: 'Keyboard navigation', desc: 'Move through your inbox and threads without ever touching the mouse',
+        icon: '<svg viewBox="0 0 18 18"><rect x="2" y="5" width="14" height="10" rx="2"/><path d="M5 9h8M9 7v4" stroke-linecap="round"/></svg>' },
+      { name: 'Command palette', desc: 'Access any action or setting instantly from anywhere in the app',
+        icon: '<svg viewBox="0 0 18 18"><path d="M3 5h12M5 9h8M7 13h4" stroke-linecap="round"/></svg>' }
+    ]
+  },
+  { date: 'Feb 3, 2026', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card5.jpg',
+    tags: ['mail', 'enterprise', 'sales'],
+    features: [
+      { name: 'Read receipts', desc: 'See when each recipient opened your email and on which device',
+        icon: '<svg viewBox="0 0 18 18"><path d="M2 10l4 4L16 5M6 10l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+      { name: 'Open tracking', desc: 'Track opens over time to know exactly when your message was seen',
+        icon: '<svg viewBox="0 0 18 18"><path d="M2 9s3-5 7-5 7 5 7 5-3 5-7 5-7-5-7-5z" stroke-linejoin="round"/><circle cx="9" cy="9" r="2"/></svg>' }
+    ]
+  },
+  { date: 'Jan 27, 2026', title: 'Navigation that gets out of your way',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/card6.jpg',
+    tags: ['go', 'agents', 'plus'],
+    features: [
+      { name: 'Auto-correct', desc: 'Fix typos and spelling errors automatically as you compose emails',
+        icon: '<svg viewBox="0 0 18 18"><path d="M3 14l3-1 8-8a1.414 1.414 0 00-2-2L4 11l-1 3z" stroke-linejoin="round"/></svg>' },
+      { name: 'Smart compose', desc: 'AI-powered suggestions complete your sentences in your own writing style',
+        icon: '<svg viewBox="0 0 18 18"><path d="M9 3v3M9 12v3M3 9h3M12 9h3M5 5l2 2M11 11l2 2M5 13l2-2M11 7l2-2" stroke-linecap="round"/></svg>' }
+    ]
+  },
+  { date: 'Jan 24, 2026', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-1.png',
+    tags: ['mail', 'education'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  },
+  { date: 'Jan 21, 2026', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-2.png',
+    tags: ['grammarly', 'marketing', 'plus'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  },
+  { date: 'Jan 08, 2026', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-3.png',
+    tags: ['mail', 'sales', 'enterprise'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  },
+  { date: 'Dec 9, 2025', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-4.png',
+    tags: ['go', 'operations'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  },
+  { date: 'Dec 2, 2025', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-5.png',
+    tags: ['agents', 'enterprise', 'epd'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  },
+  { date: 'Nov 19, 2025', title: 'Share anything instantly with Quick Links',
+    desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+    img: 'img/sm-6.png',
+    tags: ['docs', 'plus', 'marketing'],
+    features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window', icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+  }
+];
+
+let isOpen = false;
+
+function openDrawer(idx) {
+  const card = cards[idx];
+  document.getElementById('drawerBody').innerHTML = `
+    <div class="drawer-date">${card.date}</div>
+    <div class="drawer-title">${card.title}</div>
+    <p class="drawer-desc">${card.desc}</p>
+    <div class="drawer-hero"><img src="${card.img}" alt="${card.title}"></div>
+    <div class="drawer-features-heading">Features</div>
+    <div class="drawer-feature-list">
+      ${card.features.map(f => `
+        <div class="drawer-feature-item">
+          <div class="drawer-feature-icon">${f.icon}</div>
+          <div class="drawer-feature-text"><h4>${f.name}</h4><p>${f.desc}</p></div>
+        </div>`).join('')}
+    </div>`;
+
+  const scroll = document.getElementById('drawerScroll');
+  scroll.scrollTop = 0;
+  document.getElementById('backdrop').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  isOpen = true;
+  updateFade();
+  scroll.addEventListener('scroll', updateFade);
+}
+
+function closeDrawer() {
+  document.getElementById('backdrop').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow = '';
+  isOpen = false;
+  document.getElementById('drawerScroll').removeEventListener('scroll', updateFade);
+}
+
+function updateFade() {
+  const el = document.getElementById('drawerScroll');
+  const fade = document.getElementById('drawerFade');
+  if (!el || !fade) return;
+  fade.style.opacity = (el.scrollHeight - el.scrollTop <= el.clientHeight + 2) ? '0' : '1';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeDrawer(); });
+
+function showMore() {
+  const grid = document.getElementById('grid3up');
+  const existing = grid.querySelectorAll('.grid-card-small');
+  const startIdx = cards.length; // append to end of cards array
+  const iconSvg = '<div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>';
+  // Clone the first 6 small cards (sm-1 through sm-6) and append
+  const smCards = [
+    { img: 'img/sm-1.png', date: 'Jan 24, 2026' },
+    { img: 'img/sm-2.png', date: 'Jan 21, 2026' },
+    { img: 'img/sm-3.png', date: 'Jan 08, 2026' },
+    { img: 'img/sm-4.png', date: 'Dec 9, 2025' },
+    { img: 'img/sm-5.png', date: 'Dec 2, 2025' },
+    { img: 'img/sm-6.png', date: 'Nov 19, 2025' },
+  ];
+  smCards.forEach((c, i) => {
+    const idx = cards.length;
+    cards.push({ date: c.date, title: 'Share anything instantly with Quick Links',
+      desc: 'Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.',
+      img: c.img, features: [{ name: 'Quick Links', desc: 'Share any link or file directly from your compose window',
+        icon: '<svg viewBox="0 0 18 18"><path d="M7 11l-3 3a3 3 0 004 0l5-5a3 3 0 000-4M11 7l3-3a3 3 0 00-4 0L5 9" stroke-linecap="round"/></svg>' }]
+    });
+    const div = document.createElement('div');
+    div.className = 'grid-card-small';
+    div.setAttribute('onclick', `openDrawer(${idx})`);
+    div.innerHTML = `<div class="card-img-wrap-small"><div class="card-img-inner"><img src="${c.img}" alt="Share anything instantly with Quick Links">${iconSvg}</div></div><div class="card-meta"><div class="card-date">${c.date}</div><div class="card-title">Share anything instantly with Quick Links</div><div class="card-desc">Templates provide a quick starting point for common workflows. Instead of building projects from scratch, teams can start with a predefined structure.</div></div>`;
+    grid.appendChild(div);
+  });
+  document.getElementById('showMoreBtn').style.display = 'none';
+}
+
+let filtersDirty = false;
+
+function toggleDropdown(e, id) {
+  e.stopPropagation();
+  const btn = e.currentTarget;
+  const wasOpen = document.getElementById(id).classList.contains('open');
+  // Close other open dropdowns and apply if dirty
+  document.querySelectorAll('.filter-dropdown-menu').forEach(m => {
+    if (m.id !== id && m.classList.contains('open')) {
+      m.classList.remove('open');
+      if (filtersDirty) applyFilters();
+    }
+  });
+  document.querySelectorAll('.filter-tab--dropdown').forEach(b => { if (b !== btn) b.classList.remove('open'); });
+  document.getElementById(id).classList.toggle('open');
+  btn.classList.toggle('open');
+  // If we just closed this dropdown, apply filters
+  if (wasOpen && filtersDirty) applyFilters();
+}
+
+document.addEventListener('click', () => {
+  const anyOpen = document.querySelector('.filter-dropdown-menu.open');
+  document.querySelectorAll('.filter-dropdown-menu').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.filter-tab--dropdown').forEach(b => b.classList.remove('open'));
+  if (anyOpen && filtersDirty) applyFilters();
+});
+
+function renderTags() {
+  const checked = document.querySelectorAll('.filter-dropdown-item.checked');
+  const container = document.getElementById('filterTags');
+  container.innerHTML = '';
+  if (checked.length === 0) { container.classList.remove('visible'); return; }
+  container.classList.add('visible');
+  checked.forEach(item => {
+    const label = item.textContent.trim();
+    const tag = document.createElement('span');
+    tag.className = 'filter-tag';
+    tag.innerHTML = `${label}<button class="filter-tag-remove" aria-label="Remove ${label}">×</button>`;
+    tag.querySelector('.filter-tag-remove').addEventListener('click', () => {
+      item.classList.remove('checked');
+      renderTags();
+      applyFilters();
+    });
+    container.appendChild(tag);
+  });
+  const clear = document.createElement('button');
+  clear.className = 'filter-clear-all';
+  clear.textContent = 'Clear all';
+  clear.addEventListener('click', () => {
+    document.querySelectorAll('.filter-dropdown-item.checked').forEach(i => i.classList.remove('checked'));
+    renderTags();
+    applyFilters();
+  });
+  container.appendChild(clear);
+}
+
+document.querySelectorAll('.filter-dropdown-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('checked');
+    filtersDirty = true;
+    renderTags();
+  });
+});
+
+function buildSmallCard(card, idx) {
+  return `<div class="grid-card-small" onclick="openDrawer(${idx})">
+    <div class="card-img-wrap-small">
+      <div class="card-img-inner">
+        <img src="${card.img}" alt="${card.title}">
+        <div class="card-expand-icon"><div class="icon-bg"><svg viewBox="0 0 13 13"><line x1="1.5" y1="11.5" x2="11.5" y2="1.5"/><polyline points="5.5,1.5 11.5,1.5 11.5,7.5"/></svg></div></div>
+      </div>
+    </div>
+    <div class="card-meta">
+      <div class="card-date">${card.date}</div>
+      <div class="card-title">${card.title}</div>
+      <div class="card-desc">${card.desc}</div>
+    </div>
+  </div>`;
+}
+
+function buildFeaturedCard(card, idx) {
+  return `<div class="featured-card" onclick="openDrawer(${idx})">
+    <div class="featured-img-wrap">
+      <div class="featured-img-inner">
+        <img src="${card.img}" alt="${card.title}">
+      </div>
+    </div>
+    <div class="featured-content">
+      <div class="card-byline">${card.date}</div>
+      <h2 class="featured-title">
+        <span>${card.title}</span>
+        <span class="expand-arrow"></span>
+      </h2>
+      <p class="featured-desc">${card.desc}</p>
+    </div>
+  </div>`;
+}
+
+function applyFilters() {
+  filtersDirty = false;
+  const activeTags = [...document.querySelectorAll('.filter-dropdown-item.checked')].map(i => i.dataset.tag);
+  const area = document.getElementById('contentArea');
+
+  area.style.opacity = '0';
+  setTimeout(() => {
+    if (activeTags.length === 0) {
+      document.getElementById('defaultView').style.display = '';
+      document.getElementById('filteredView').style.display = 'none';
+    } else {
+      const matched = cards.map((c, i) => ({ card: c, idx: i })).filter(({ card }) =>
+        card.tags && card.tags.some(t => activeTags.includes(t))
+      );
+      const featuredEl = document.getElementById('filteredFeatured');
+      const gridEl = document.getElementById('filteredGrid');
+      if (matched.length === 0) {
+        featuredEl.innerHTML = '<p style="padding:48px 0;color:var(--text-sub);font-size:15px;">No results match the selected filters.</p>';
+        gridEl.innerHTML = '';
+      } else {
+        const [first, ...rest] = matched;
+        featuredEl.innerHTML = buildFeaturedCard(first.card, first.idx);
+        gridEl.innerHTML = rest.map(({ card, idx }) => buildSmallCard(card, idx)).join('');
+      }
+      document.getElementById('defaultView').style.display = 'none';
+      document.getElementById('filteredView').style.display = '';
+    }
+    area.style.opacity = '1';
+  }, 180);
+}
+</script>
+</body>
+</html>
