@@ -132,9 +132,55 @@ body { font-family: var(--font); color: var(--text); background: var(--bg); min-
 .filter-tabs {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0;
   margin-top: 24px;
   margin-left: -12px;
+}
+.filter-left {
+  display: flex;
+  align-items: center;
+}
+.filter-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  flex-shrink: 0;
+  margin: 0 20px 0 8px;
+}
+.filter-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.filter-plan {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: color 0.12s;
+  justify-content: center;
+}
+.filter-plan:hover { color: var(--text); }
+.filter-plan.active { color: var(--text); }
+.filter-plan.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 1px;
 }
 
 .filter-tab {
@@ -738,32 +784,32 @@ body { font-family: var(--font); color: var(--text); background: var(--bg); min-
   </div>
 
   <div class="filter-tabs">
-    <div class="filter-dropdown">
-      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'productDropdown')">Product <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
-      <div class="filter-dropdown-menu" id="productDropdown">
-        <button class="filter-dropdown-item" data-tag="go"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Go</button>
-        <button class="filter-dropdown-item" data-tag="docs"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Docs</button>
-        <button class="filter-dropdown-item" data-tag="mail"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Mail</button>
-        <button class="filter-dropdown-item" data-tag="agents"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Agents</button>
-        <button class="filter-dropdown-item" data-tag="grammarly"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Grammarly</button>
+    <div class="filter-left">
+      <div class="filter-dropdown">
+        <button class="filter-tab filter-tab--dropdown" id="productBtn" onclick="toggleDropdown(event,'productDropdown')"><span class="btn-label">Product</span> <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
+        <div class="filter-dropdown-menu" id="productDropdown">
+          <button class="filter-dropdown-item" data-tag="go"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Go</button>
+          <button class="filter-dropdown-item" data-tag="docs"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Docs</button>
+          <button class="filter-dropdown-item" data-tag="mail"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Mail</button>
+          <button class="filter-dropdown-item" data-tag="agents"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Agents</button>
+          <button class="filter-dropdown-item" data-tag="grammarly"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Grammarly</button>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <button class="filter-tab filter-tab--dropdown" id="teamBtn" onclick="toggleDropdown(event,'teamDropdown')"><span class="btn-label">Team</span> <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
+        <div class="filter-dropdown-menu" id="teamDropdown">
+          <button class="filter-dropdown-item" data-tag="marketing"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Marketing</button>
+          <button class="filter-dropdown-item" data-tag="sales"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Sales</button>
+          <button class="filter-dropdown-item" data-tag="operations"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Operations</button>
+          <button class="filter-dropdown-item" data-tag="epd"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>EPD</button>
+        </div>
       </div>
     </div>
-    <div class="filter-dropdown">
-      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'teamDropdown')">Team <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
-      <div class="filter-dropdown-menu" id="teamDropdown">
-        <button class="filter-dropdown-item" data-tag="marketing"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Marketing</button>
-        <button class="filter-dropdown-item" data-tag="sales"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Sales</button>
-        <button class="filter-dropdown-item" data-tag="operations"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Operations</button>
-        <button class="filter-dropdown-item" data-tag="epd"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>EPD</button>
-      </div>
-    </div>
-    <div class="filter-dropdown">
-      <button class="filter-tab filter-tab--dropdown" onclick="toggleDropdown(event,'planDropdown')">Plan <svg width="9" height="5" viewBox="0 0 9 5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l3.5 3L8 1"/></svg></button>
-      <div class="filter-dropdown-menu" id="planDropdown">
-        <button class="filter-dropdown-item" data-tag="education"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Education</button>
-        <button class="filter-dropdown-item" data-tag="enterprise"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Enterprise</button>
-        <button class="filter-dropdown-item" data-tag="plus"><span class="filter-checkbox"><svg class="filter-checkbox-check" viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></span>Plus</button>
-      </div>
+    <div class="filter-divider"></div>
+    <div class="filter-right">
+      <button class="filter-plan" data-plan="enterprise" data-tag="enterprise" onclick="togglePlan(this)">Enterprise</button>
+      <button class="filter-plan" data-plan="education" data-tag="education" onclick="togglePlan(this)">Education</button>
+      <button class="filter-plan" data-plan="plus" data-tag="plus" onclick="togglePlan(this)">Plus</button>
     </div>
   </div>
 
@@ -1236,33 +1282,68 @@ document.addEventListener('click', () => {
   if (anyOpen && filtersDirty) applyFilters();
 });
 
+function updateDropdownLabels() {
+  const productCount = document.querySelectorAll('#productDropdown .filter-dropdown-item.checked').length;
+  const teamCount = document.querySelectorAll('#teamDropdown .filter-dropdown-item.checked').length;
+  const productBtn = document.getElementById('productBtn');
+  const teamBtn = document.getElementById('teamBtn');
+  productBtn.querySelector('.btn-label').textContent = productCount > 0 ? `Product (${productCount})` : 'Product';
+  teamBtn.querySelector('.btn-label').textContent = teamCount > 0 ? `Team (${teamCount})` : 'Team';
+}
+
 function renderTags() {
-  const checked = document.querySelectorAll('.filter-dropdown-item.checked');
+  const checkedItems = document.querySelectorAll('.filter-dropdown-item.checked');
+  const activePlans = document.querySelectorAll('.filter-plan.active');
   const container = document.getElementById('filterTags');
   container.innerHTML = '';
-  if (checked.length === 0) { container.classList.remove('visible'); return; }
+  const total = checkedItems.length + activePlans.length;
+  if (total === 0) { container.classList.remove('visible'); return; }
   container.classList.add('visible');
-  checked.forEach(item => {
+
+  checkedItems.forEach(item => {
     const label = item.textContent.trim();
     const tag = document.createElement('span');
     tag.className = 'filter-tag';
     tag.innerHTML = `${label}<button class="filter-tag-remove" aria-label="Remove ${label}">×</button>`;
     tag.querySelector('.filter-tag-remove').addEventListener('click', () => {
       item.classList.remove('checked');
+      updateDropdownLabels();
       renderTags();
       applyFilters();
     });
     container.appendChild(tag);
   });
+
+  activePlans.forEach(btn => {
+    const label = btn.textContent.trim();
+    const tag = document.createElement('span');
+    tag.className = 'filter-tag';
+    tag.innerHTML = `${label}<button class="filter-tag-remove" aria-label="Remove ${label}">×</button>`;
+    tag.querySelector('.filter-tag-remove').addEventListener('click', () => {
+      btn.classList.remove('active');
+      renderTags();
+      applyFilters();
+    });
+    container.appendChild(tag);
+  });
+
   const clear = document.createElement('button');
   clear.className = 'filter-clear-all';
   clear.textContent = 'Clear all';
   clear.addEventListener('click', () => {
     document.querySelectorAll('.filter-dropdown-item.checked').forEach(i => i.classList.remove('checked'));
+    document.querySelectorAll('.filter-plan.active').forEach(b => b.classList.remove('active'));
+    updateDropdownLabels();
     renderTags();
     applyFilters();
   });
   container.appendChild(clear);
+}
+
+function togglePlan(btn) {
+  btn.classList.toggle('active');
+  renderTags();
+  applyFilters();
 }
 
 document.querySelectorAll('.filter-dropdown-item').forEach(item => {
@@ -1270,6 +1351,7 @@ document.querySelectorAll('.filter-dropdown-item').forEach(item => {
     e.stopPropagation();
     this.classList.toggle('checked');
     filtersDirty = true;
+    updateDropdownLabels();
     renderTags();
   });
 });
@@ -1310,7 +1392,10 @@ function buildFeaturedCard(card, idx) {
 
 function applyFilters() {
   filtersDirty = false;
-  const activeTags = [...document.querySelectorAll('.filter-dropdown-item.checked')].map(i => i.dataset.tag);
+  const activeTags = [
+    ...[...document.querySelectorAll('.filter-dropdown-item.checked')].map(i => i.dataset.tag),
+    ...[...document.querySelectorAll('.filter-plan.active')].map(b => b.dataset.tag)
+  ];
   const area = document.getElementById('contentArea');
 
   area.style.opacity = '0';
